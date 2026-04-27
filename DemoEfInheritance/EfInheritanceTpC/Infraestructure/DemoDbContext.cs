@@ -31,6 +31,7 @@ class DemoDbContext : DbContext
     // Configures the model and mappings between entities and database
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        // Configure the default schema for all tables
         modelBuilder.HasDefaultSchema("tpc");
 
         // Configure the base class as abstract to prevent EF Core from creating a separate table

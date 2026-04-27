@@ -28,6 +28,7 @@ class DemoDbContext : DbContext
     // Configures the model and mappings between entities and database
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        // Configure the default schema for all tables
         modelBuilder.HasDefaultSchema("tph");
 
         // Configuring Table-Per-Hierarchy (TPH) inheritance for Payment entities

@@ -1,11 +1,11 @@
-global using DemoEfBasic.Database;
-global using DemoEfBasic.Endpoints;
-global using DemoEfBasic.Models;
-global using DemoEfBasic.Utils;
+global using DemoEfErrors.Database;
+global using DemoEfErrors.Endpoints;
+global using DemoEfErrors.Models;
+global using DemoEfErrors.Utils;
 global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.EntityFrameworkCore;
 
-namespace DemoEfBasic;
+namespace DemoEfErrors;
 
 static class Program
 {
@@ -26,8 +26,7 @@ static class Program
             app.UseSwaggerUI();
         }
 
-        app.MapReadEndpoints();
-        app.MapWriteEndpoints();
+        app.MapErrorsEndpoints();
 
         app.Run();
     }
