@@ -1,11 +1,20 @@
-﻿Use Demo;
+﻿IF DB_ID('DemoEf') IS NULL
+	CREATE DATABASE DemoEf;
+GO
 
-DROP TABLE IF EXISTS Articles;
-DROP TABLE IF EXISTS Images;
-DROP TABLE IF EXISTS Videos;
-DROP TABLE IF EXISTS Contents;
+USE DemoEf;
 
-CREATE TABLE Contents (
+DROP TABLE IF EXISTS tpt.Articles;
+DROP TABLE IF EXISTS tpt.Images;
+DROP TABLE IF EXISTS tpt.Videos;
+DROP TABLE IF EXISTS tpt.Contents;
+DROP SCHEMA IF EXISTS tpt;
+GO
+
+CREATE SCHEMA tpt;
+GO
+
+CREATE TABLE tpt.Contents (
     ContentId int NOT NULL IDENTITY,
     Title varchar(max) NOT NULL,
     Author varchar(max) NOT NULL,
@@ -15,34 +24,34 @@ CREATE TABLE Contents (
     CONSTRAINT PK_Contents PRIMARY KEY (ContentId)
 );
 
-CREATE TABLE Articles (
+CREATE TABLE tpt.Articles (
     ContentId int NOT NULL,
     Content varchar(max) NOT NULL,
     Summary varchar(max) NOT NULL,
     CONSTRAINT PK_Articles PRIMARY KEY (ContentId),
-    CONSTRAINT FK_Articles_Contents_ContentId FOREIGN KEY (ContentId) REFERENCES Contents (ContentId) ON DELETE CASCADE
+    CONSTRAINT FK_Articles_Contents_ContentId FOREIGN KEY (ContentId) REFERENCES tpt.Contents (ContentId) ON DELETE CASCADE
 );
 
-CREATE TABLE Images (
+CREATE TABLE tpt.Images (
     ContentId int NOT NULL,
     ImageUrl varchar(max) NOT NULL,
     Dimensions varchar(max) NOT NULL,
     CONSTRAINT PK_Images PRIMARY KEY (ContentId),
-    CONSTRAINT FK_Images_Contents_ContentId FOREIGN KEY (ContentId) REFERENCES Contents (ContentId) ON DELETE CASCADE
+    CONSTRAINT FK_Images_Contents_ContentId FOREIGN KEY (ContentId) REFERENCES tpt.Contents (ContentId) ON DELETE CASCADE
 );
 
-CREATE TABLE Videos (
+CREATE TABLE tpt.Videos (
     ContentId int NOT NULL,
     VideoUrl varchar(max) NOT NULL,
     Duration int NOT NULL,
     Resolution varchar(max) NOT NULL,
     CONSTRAINT PK_Videos PRIMARY KEY (ContentId),
-    CONSTRAINT FK_Videos_Contents_ContentId FOREIGN KEY (ContentId) REFERENCES Contents (ContentId) ON DELETE CASCADE
+    CONSTRAINT FK_Videos_Contents_ContentId FOREIGN KEY (ContentId) REFERENCES tpt.Contents (ContentId) ON DELETE CASCADE
 );
 
 /*
-SELECT * FROM Contents;
-SELECT * FROM Articles;
-SELECT * FROM Images;
-SELECT * FROM Videos;
+SELECT * FROM tpt.Contents;
+SELECT * FROM tpt.Articles;
+SELECT * FROM tpt.Images;
+SELECT * FROM tpt.Videos;
 */

@@ -1,14 +1,24 @@
-﻿Use Demo;
+﻿IF DB_ID('DemoEf') IS NULL
+	CREATE DATABASE DemoEf;
+GO
 
-DROP TABLE IF EXISTS Articles;
-DROP TABLE IF EXISTS Images;
-DROP TABLE IF EXISTS Videos;
-DROP TABLE IF EXISTS Contents;
+USE DemoEf;
 
-CREATE SEQUENCE ContentSequence START WITH 1 INCREMENT BY 1 NO MINVALUE NO MAXVALUE NO CYCLE;
+DROP TABLE IF EXISTS tpc.Articles;
+DROP TABLE IF EXISTS tpc.Images;
+DROP TABLE IF EXISTS tpc.Videos;
+DROP TABLE IF EXISTS tpc.Contents;
+DROP SEQUENCE IF EXISTS tpc.ContentSequence;
+DROP SCHEMA IF EXISTS tpc;
+GO
+
+CREATE SCHEMA tpc;
+GO
+
+CREATE SEQUENCE tpc.ContentSequence START WITH 1 INCREMENT BY 1 NO MINVALUE NO MAXVALUE NO CYCLE;
 	
-CREATE TABLE Articles (
-    ContentId int NOT NULL DEFAULT (NEXT VALUE FOR ContentSequence),
+CREATE TABLE tpc.Articles (
+    ContentId int NOT NULL DEFAULT (NEXT VALUE FOR tpc.ContentSequence),
     Title nvarchar(max) NOT NULL,
     Author nvarchar(max) NOT NULL,
     PublishedDate datetime2 NOT NULL,
@@ -18,8 +28,8 @@ CREATE TABLE Articles (
     CONSTRAINT PK_Articles PRIMARY KEY (ContentId)
 );
 
-CREATE TABLE Images (
-    ContentId int NOT NULL DEFAULT (NEXT VALUE FOR ContentSequence),
+CREATE TABLE tpc.Images (
+    ContentId int NOT NULL DEFAULT (NEXT VALUE FOR tpc.ContentSequence),
     Title nvarchar(max) NOT NULL,
     Author nvarchar(max) NOT NULL,
     PublishedDate datetime2 NOT NULL,
@@ -29,8 +39,8 @@ CREATE TABLE Images (
     CONSTRAINT PK_Images PRIMARY KEY (ContentId)
 );
 
-CREATE TABLE Videos (
-    ContentId int NOT NULL DEFAULT (NEXT VALUE FOR ContentSequence),
+CREATE TABLE tpc.Videos (
+    ContentId int NOT NULL DEFAULT (NEXT VALUE FOR tpc.ContentSequence),
     Title nvarchar(max) NOT NULL,
     Author nvarchar(max) NOT NULL,
     PublishedDate datetime2 NOT NULL,
@@ -42,7 +52,7 @@ CREATE TABLE Videos (
 );
 
 /*
-SELECT * FROM Articles;
-SELECT * FROM Images;
-SELECT * FROM Videos;
+SELECT * FROM tpc.Articles;
+SELECT * FROM tpc.Images;
+SELECT * FROM tpc.Videos;
 */

@@ -1,11 +1,20 @@
-﻿Use Demo;
+﻿IF DB_ID('DemoEf') IS NULL
+	CREATE DATABASE DemoEf;
+GO
 
-DROP TABLE IF EXISTS Articles;
-DROP TABLE IF EXISTS Images;
-DROP TABLE IF EXISTS Videos;
-DROP TABLE IF EXISTS Contents;
+USE DemoEf;
 
-CREATE TABLE Contents (
+DROP TABLE IF EXISTS tph.Articles;
+DROP TABLE IF EXISTS tph.Images;
+DROP TABLE IF EXISTS tph.Videos;
+DROP TABLE IF EXISTS tph.Contents;
+DROP SCHEMA IF EXISTS tph;
+GO
+
+CREATE SCHEMA tph;
+GO
+
+CREATE TABLE tph.Contents (
     ContentId int NOT NULL IDENTITY,
     Title varchar(max) NOT NULL,
     Author varchar(max) NOT NULL,
@@ -23,5 +32,5 @@ CREATE TABLE Contents (
 );
 
 /*
-SELECT * FROM Contents;
+SELECT * FROM tph.Contents;
 */

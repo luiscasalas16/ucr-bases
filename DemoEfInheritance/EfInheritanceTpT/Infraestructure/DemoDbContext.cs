@@ -31,6 +31,8 @@ class DemoDbContext : DbContext
     // Configures the model and mappings between entities and database
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.HasDefaultSchema("tpt");
+
         // Map each class in the hierarchy to its own table
         modelBuilder.Entity<Content>().ToTable("Contents"); // Base table for common properties
         modelBuilder.Entity<Article>().ToTable("Articles"); // Table for Articles
