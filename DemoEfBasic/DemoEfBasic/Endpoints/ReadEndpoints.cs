@@ -51,6 +51,17 @@ internal static class ReadEndpoints
         [FromServices] EmpresaContext context
     )
     {
+        // ██╗    ██╗ █████╗ ██████╗ ███╗   ██╗██╗███╗   ██╗ ██████╗
+        // ██║    ██║██╔══██╗██╔══██╗████╗  ██║██║████╗  ██║██╔════╝
+        // ██║ █╗ ██║███████║██████╔╝██╔██╗ ██║██║██╔██╗ ██║██║  ███╗
+        // ██║███╗██║██╔══██║██╔══██╗██║╚██╗██║██║██║╚██╗██║██║   ██║
+        // ╚███╔███╔╝██║  ██║██║  ██║██║ ╚████║██║██║ ╚████║╚██████╔╝
+        //  ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝╚═╝  ╚═══╝ ╚═════╝
+        //
+        // WARNING: Do not embed SQL directly in C# code.
+        // This mixes responsibilities and makes the system harder to maintain and evolve.
+        // Additionally, interpolating values into the query introduces security risks such
+        // as SQL injection by bypassing proper parameterization.
         return context
             .Database.SqlQuery<EmpleadoDto>(
                 @$"SELECT Cedula, Nombre, Apellidos, Correo, Salario

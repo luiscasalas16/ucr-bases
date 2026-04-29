@@ -25,6 +25,17 @@ internal static class WriteEndpoints
     {
         var empleadoFake = Faker.GenerateEmpleadoFake();
 
+        // ██╗    ██╗ █████╗ ██████╗ ███╗   ██╗██╗███╗   ██╗ ██████╗
+        // ██║    ██║██╔══██╗██╔══██╗████╗  ██║██║████╗  ██║██╔════╝
+        // ██║ █╗ ██║███████║██████╔╝██╔██╗ ██║██║██╔██╗ ██║██║  ███╗
+        // ██║███╗██║██╔══██║██╔══██╗██║╚██╗██║██║██║╚██╗██║██║   ██║
+        // ╚███╔███╔╝██║  ██║██║  ██║██║ ╚████║██║██║ ╚████║╚██████╔╝
+        //  ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝╚═╝  ╚═══╝ ╚═════╝
+        //
+        // WARNING: Do not embed SQL directly in C# code.
+        // This mixes responsibilities and makes the system harder to maintain and evolve.
+        // Additionally, interpolating values into the query introduces security risks such
+        // as SQL injection by bypassing proper parameterization.
         await context.Database.ExecuteSqlAsync(
             @$"INSERT INTO rh.Empleado (Cedula, Nombre, Apellidos, FechaNacimiento, Direccion,
                           Correo, Salario, DepartamentoNumero, SupervidorCedula)
