@@ -4,7 +4,7 @@ internal static class ReadUnmappedEndpoints
 {
     public static IEndpointRouteBuilder MapReadUnmappedEndpoints(this IEndpointRouteBuilder builder)
     {
-        var group = builder.MapGroup("/read").WithTags("Read Examples");
+        var group = builder.MapGroup("/read").WithTags("Read Unmapped Examples");
 
         group.MapGet("/GetEmpleadosReporteSpUnmapped", GetEmpleadosReporteSpUnmapped);
         group.MapGet("/GetEmpleadosReporteFnUnmapped", GetEmpleadosReporteFnUnmapped);

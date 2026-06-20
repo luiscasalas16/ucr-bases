@@ -1,18 +1,20 @@
 ﻿namespace DemoEfAdvanced.Endpoints;
 
-internal static class WriteEndpoints
+internal static class WriteUnmappedEndpoints
 {
-    public static IEndpointRouteBuilder MapWriteEndpoints(this IEndpointRouteBuilder builder)
+    public static IEndpointRouteBuilder MapWriteUnmappedEndpoints(
+        this IEndpointRouteBuilder builder
+    )
     {
-        var group = builder.MapGroup("/write").WithTags("Write Examples");
+        var group = builder.MapGroup("/write").WithTags("Write Unmapped Examples");
 
-        group.MapGet("/InsertEmpleadoSp1", InsertEmpleadoSp1);
-        group.MapGet("/InsertEmpleadoSp2", InsertEmpleadoSp2);
+        group.MapGet("/InsertEmpleadoSp1Unmapped", InsertEmpleadoSp1Unmapped);
+        group.MapGet("/InsertEmpleadoSp2Unmapped", InsertEmpleadoSp2Unmapped);
 
         return builder;
     }
 
-    public static async Task InsertEmpleadoSp1([FromServices] EmpresaContext context)
+    public static async Task InsertEmpleadoSp1Unmapped([FromServices] EmpresaContext context)
     {
         var empleadoFake = Faker.GenerateEmpleadoFake();
 
@@ -28,11 +30,9 @@ internal static class WriteEndpoints
                     @DepartamentoNumero = {empleadoFake.DepartamentoNumero},
                     @SupervidorCedula = {empleadoFake.SupervidorCedula}"
         );
-
-        await context.SaveChangesAsync();
     }
 
-    public static async Task InsertEmpleadoSp2([FromServices] EmpresaContext context)
+    public static async Task InsertEmpleadoSp2Unmapped([FromServices] EmpresaContext context)
     {
         var empleadoFake = Faker.GenerateEmpleadoFake();
 
@@ -48,7 +48,5 @@ internal static class WriteEndpoints
                     {empleadoFake.DepartamentoNumero},
                     {empleadoFake.SupervidorCedula}"
         );
-
-        await context.SaveChangesAsync();
     }
 }

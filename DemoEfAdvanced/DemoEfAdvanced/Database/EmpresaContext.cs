@@ -1,6 +1,6 @@
 ﻿namespace DemoEfAdvanced.Database;
 
-internal partial class EmpresaContext : DbContext
+internal class EmpresaContext : DbContext
 {
     private readonly string _connectionString;
 
@@ -15,13 +15,7 @@ internal partial class EmpresaContext : DbContext
         _connectionString = configuration.GetConnectionString("EmpresaContext")!;
     }
 
-    // Declare mapped View
-    public virtual DbSet<EmpleadoVw> EmpleadoVw { get; set; }
-
-    // Declare mapped Function
-    public IQueryable<EmpleadoFn> fnGetEmpleados(int departamentoNumero) =>
-        FromExpression(() => fnGetEmpleados(departamentoNumero));
-
+    // Declare class to table map.
     public virtual DbSet<Empleado> Empleados { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) =>
@@ -29,16 +23,7 @@ internal partial class EmpresaContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        // Configure mapped View
-        modelBuilder.Entity<EmpleadoVw>().HasNoKey().ToView("vwEmpleados", "rh");
-
-        // Configure mapped Function
-        modelBuilder.Entity<EmpleadoFn>().HasNoKey();
-        modelBuilder
-            .HasDbFunction(() => fnGetEmpleados(default))
-            .HasName("fnGetEmpleados")
-            .HasSchema("rh");
-
+        // Configure class to table map.
         modelBuilder.Entity<Empleado>(entity =>
         {
             entity.HasKey(e => e.Cedula);

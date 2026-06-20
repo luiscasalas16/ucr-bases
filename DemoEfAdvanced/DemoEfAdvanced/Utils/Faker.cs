@@ -19,5 +19,23 @@
                 DepartamentoNumero = faker.PickRandom(1, 2, 3),
             };
         }
+
+        public static EmpleadoUsp GenerateEmpleadoUspFake()
+        {
+            var faker = new Bogus.Faker();
+
+            return new EmpleadoUsp
+            {
+                Cedula = faker.Random.String2(10, "0123456789"),
+                Nombre = faker.Person.FirstName,
+                Apellidos = faker.Person.LastName,
+                FechaNacimiento = faker.Person.DateOfBirth,
+                Direccion = faker.Address.StreetName(),
+                Correo = faker.Internet.Email(),
+                SupervidorCedula = null,
+                Salario = faker.Random.Number(0, 5000),
+                DepartamentoNumero = faker.PickRandom(1, 2, 3),
+            };
+        }
     }
 }

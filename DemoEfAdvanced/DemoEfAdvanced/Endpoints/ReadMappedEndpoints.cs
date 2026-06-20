@@ -4,7 +4,7 @@ internal static class ReadMappedEndpoints
 {
     public static IEndpointRouteBuilder MapReadMappedEndpoints(this IEndpointRouteBuilder builder)
     {
-        var group = builder.MapGroup("/read").WithTags("Read Examples");
+        var group = builder.MapGroup("/read").WithTags("Read Mapped Examples");
 
         group.MapGet("/GetEmpleadosSpMapped", GetEmpleadosSpMapped);
         group.MapGet("/GetEmpleadosFnMapped", GetEmpleadosFnMapped);
@@ -25,7 +25,7 @@ internal static class ReadMappedEndpoints
 
     static Task<List<EmpleadoFn>> GetEmpleadosFnMapped(
         int departamentoNumero,
-        [FromServices] EmpresaContext context
+        [FromServices] EmpresaContextFn context
     )
     {
         return context.fnGetEmpleados(departamentoNumero).ToListAsync();
@@ -33,7 +33,7 @@ internal static class ReadMappedEndpoints
 
     static Task<List<EmpleadoVw>> GetEmpleadosVwMapped(
         int departamentoNumero,
-        [FromServices] EmpresaContext context
+        [FromServices] EmpresaContextVw context
     )
     {
         return context

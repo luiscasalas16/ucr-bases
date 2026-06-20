@@ -17,6 +17,9 @@ static class Program
         builder.Services.AddSwaggerGen();
 
         builder.Services.AddDbContext<EmpresaContext>();
+        builder.Services.AddDbContext<EmpresaContextFn>();
+        builder.Services.AddDbContext<EmpresaContextUsp>();
+        builder.Services.AddDbContext<EmpresaContextVw>();
 
         var app = builder.Build();
 
@@ -26,9 +29,10 @@ static class Program
             app.UseSwaggerUI();
         }
 
-        app.MapWriteEndpoints();
         app.MapReadUnmappedEndpoints();
         app.MapReadMappedEndpoints();
+        app.MapWriteUnmappedEndpoints();
+        app.MapWriteMappedEndpoints();
 
         app.Run();
     }
