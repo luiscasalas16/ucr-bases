@@ -1,0 +1,10 @@
+﻿[*.cs]
+
+# S1075: URIs should not be hardcoded
+dotnet_diagnostic.S1075.severity = suggestion
+
+# EF1002: Risk of vulnerability to SQL injection.
+dotnet_diagnostic.EF1002.severity = none
+
+# EF1003: Risk of vulnerability to SQL injection.
+dotnet_diagnostic.EF1003.severity = none
